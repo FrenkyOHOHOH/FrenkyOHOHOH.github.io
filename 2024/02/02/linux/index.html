@@ -1,0 +1,386 @@
+
+<!DOCTYPE html><html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.26.4" theme-name="Stellar" theme-version="1.26.4">
+  
+  <meta name="generator" content="Hexo 7.1.1">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  
+  <title>OS-Linux学习笔记 - Fr3Nky's Blog</title>
+
+  
+    <meta name="description" content="文档大致情况：总结比赛和日常了解到的一些linux知识">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OS-Linux学习笔记">
+<meta property="og:url" content="https://fr3nky.uk/2024/02/02/linux/index.html">
+<meta property="og:site_name" content="Fr3Nky&#39;s Blog">
+<meta property="og:description" content="文档大致情况：总结比赛和日常了解到的一些linux知识">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-02-02T08:26:56.000Z">
+<meta property="article:modified_time" content="2024-02-02T08:26:56.000Z">
+<meta property="article:author" content="Fr3Nky">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="操作系统">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="运维">
+<meta name="twitter:card" content="summary">
+  
+  
+  
+  <meta name="keywords" content="笔记,操作系统,Linux,运维">
+
+  <!-- feed -->
+  
+
+  <link rel="stylesheet" href="/css/main.css?v=1.26.4">
+
+  
+    <link rel="shortcut icon" href="/assets/favicon.ico">
+  
+
+  
+
+  
+  <link rel="stylesheet" href="https://cdn.staticfile.org/lxgw-wenkai-screen-webfont/1.6.0/lxgwwenkaiscreen.css" media="print" onload="this.media='all'">
+</head>
+<body>
+
+<div class="l_body content tech" id="start" layout="post" ><aside class="l_left"><div class="sidebar-container sidebar-blur">
+
+
+<header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/assets/icon.png" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main" ff="title">Fr3Nky's Blog</div><div class="sub normal cap">佢為人無聊返工等放工</div><div class="sub hover cap" style="opacity:0"> 時時蛇王郁啲詐胃痛</div></a></div></header>
+
+<div class="nav-area">
+<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" class="icon search-icon" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" placeholder="站内搜索"></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
+
+
+<nav class="menu dis-select"><a class="nav-item active" title="博客" href="/" style="color:#1BCDFC"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5.879 2.879C5 3.757 5 5.172 5 8v8c0 2.828 0 4.243.879 5.121C6.757 22 8.172 22 11 22h2c2.828 0 4.243 0 5.121-.879C19 20.243 19 18.828 19 16V8c0-2.828 0-4.243-.879-5.121C17.243 2 15.828 2 13 2h-2c-2.828 0-4.243 0-5.121.879M8.25 17a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75M9 12.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zM8.25 9A.75.75 0 0 1 9 8.25h6a.75.75 0 0 1 0 1.5H9A.75.75 0 0 1 8.25 9" clip-rule="evenodd"/><path fill="currentColor" d="M5.235 4.058C5 4.941 5 6.177 5 8v8c0 1.823 0 3.058.235 3.942L5 19.924c-.975-.096-1.631-.313-2.121-.803C2 18.243 2 16.828 2 14v-4c0-2.829 0-4.243.879-5.121c.49-.49 1.146-.707 2.121-.803zm13.53 15.884C19 19.058 19 17.822 19 16V8c0-1.823 0-3.059-.235-3.942l.235.018c.975.096 1.631.313 2.121.803C22 5.757 22 7.17 22 9.999v4c0 2.83 0 4.243-.879 5.122c-.49.49-1.146.707-2.121.803z" opacity=".5"/></svg></a><a class="nav-item" title="朋友们" href="/friends/" style="color:#FF69B4"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><circle cx="15" cy="6" r="3" fill="currentColor" opacity=".4"/><ellipse cx="16" cy="17" fill="currentColor" opacity=".4" rx="5" ry="3"/><circle cx="9.001" cy="6" r="4" fill="currentColor"/><ellipse cx="9.001" cy="17.001" fill="currentColor" rx="7" ry="4"/></svg></a><a class="nav-item" title="关于" href="/about/" style="color:#ffbc42"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M9.606 5.563c.766 0 .914-.157 2.394-.157s1.628.157 2.394.157c.638 0 2.554-1.563 3.511-1.563c.958 0 2.075.563 2.075 2.188v1.875c-.002.492-.18 2-.88 1.597c1.111 1.314.88 2.922.88 4.34c0 3.906-5.267 5-7.98 5s-7.98-1.094-7.98-5c0-1.418-.231-3.026.88-4.34c-.7.403-.878-1.105-.88-1.598V6.188C4.02 4.563 5.137 4 6.095 4c.957 0 2.873 1.563 3.511 1.563" opacity=".5"/><path fill="currentColor" d="M9.016 11.063c-.489 0-.815.317-.98.583a1.811 1.811 0 0 0-.254.948c0 .332.082.67.254.947c.165.266.491.584.98.584c.49 0 .815-.318.98-.584c.172-.278.254-.615.254-.947c0-.333-.082-.67-.254-.948c-.165-.266-.49-.584-.98-.584m5.021.584c.164-.266.49-.584.98-.584c.488 0 .814.318.979.584c.172.278.254.615.254.948c0 .332-.082.67-.254.947c-.165.266-.49.584-.98.584c-.489 0-.815-.318-.98-.584a1.81 1.81 0 0 1-.254-.947c0-.333.082-.67.255-.948"/><path fill="currentColor" fill-rule="evenodd" d="M11.178 14.08a2.37 2.37 0 0 1 .841-.143c.292 0 .59.045.842.143a1.3 1.3 0 0 1 .408.245c.134.123.307.35.307.675a.915.915 0 0 1-.307.675a1.294 1.294 0 0 1-.408.245c-.253.098-.55.143-.842.143c-.29 0-.588-.045-.84-.143a1.295 1.295 0 0 1-.41-.245a.915.915 0 0 1-.306-.675c0-.325.173-.552.307-.675a1.3 1.3 0 0 1 .408-.245" clip-rule="evenodd"/><path fill="currentColor" d="M17.863 13.375a.75.75 0 0 1 .75-.75c.296 0 .65.067.981.149c.345.085.72.199 1.076.321c.684.234 1.41.532 1.737.744a.75.75 0 0 1-.813 1.26c-.157-.101-.722-.35-1.409-.585a11.81 11.81 0 0 0-.95-.284a3.053 3.053 0 0 0-.622-.105a.75.75 0 0 1-.75-.75m.105 1.75a.75.75 0 1 0 0 1.5c.206 0 .55.115.98.343c.342.18.656.385.901.545l.131.086a.75.75 0 0 0 .814-1.26l-.113-.074a13.008 13.008 0 0 0-1.032-.623c-.457-.242-1.08-.517-1.681-.517m-14.153-.611c-.687.235-1.252.484-1.408.585a.75.75 0 0 1-.814-1.26c.328-.212 1.053-.51 1.737-.744c.357-.122.732-.237 1.077-.321c.33-.082.684-.149.98-.149a.75.75 0 0 1 0 1.5c-.107 0-.317.03-.622.105c-.29.072-.621.172-.95.284m.205 3.085l.131-.086c.246-.16.56-.365.901-.545c.431-.228.775-.343.98-.343a.75.75 0 0 0 0-1.5c-.6 0-1.224.275-1.68.517c-.41.216-.79.465-1.033.623l-.113.074a.75.75 0 0 0 .814 1.26"/></svg></a></nav>
+</div>
+<div class="widgets">
+
+<widget class="widget-wrapper toc single" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E4%B8%BB%E6%9C%BA%E4%BF%A1%E6%81%AF"><span class="toc-text">查看主机信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#frp%E7%BB%B4%E6%8A%A4"><span class="toc-text">frp维护</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vi%E5%92%8Cvim"><span class="toc-text">vi和vim</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E9%94%AE%E8%AF%B4%E6%98%8E"><span class="toc-text">按键说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE"><span class="toc-text">查找</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SELinux%E5%AE%89%E5%85%A8"><span class="toc-text">SELinux安全</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#proc%EF%BC%88%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%8A%B6%E6%80%81%E4%BF%A1%E6%81%AF%EF%BC%89"><span class="toc-text">&#x2F;proc（进程的状态信息）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#chattr-lsattr-%E6%96%87%E4%BB%B6%E9%9A%90%E8%97%8F%E5%B1%9E%E6%80%A7"><span class="toc-text">chattr&#x2F;lsattr 文件隐藏属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E5%A4%87%E4%BB%BD%E6%8C%87%E4%BB%A4"><span class="toc-text">资源备份指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%93%E5%8C%85"><span class="toc-text">打包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD"><span class="toc-text">下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%8C%85"><span class="toc-text">解包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8A%E4%BC%A0"><span class="toc-text">上传</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91"><span class="toc-text">端口转发</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#getshell%E5%8D%B1%E9%99%A9%E6%8C%87%E4%BB%A4%E7%BB%95%E8%BF%87"><span class="toc-text">getshell危险指令绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E7%94%A8%E6%88%B7-%E7%BB%84%EF%BC%8C%E5%AF%86%E7%A0%81%E6%93%8D%E4%BD%9C"><span class="toc-text">添加用户&#x2F;组，密码操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%89%BEweb%E7%9B%AE%E5%BD%95"><span class="toc-text">一句话找web目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#curl"><span class="toc-text">curl</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%9C%A8-Linux-Unix-%E4%B8%8A%E4%BD%BF%E7%94%A8%E5%B8%A6%E6%9C%89%E4%BB%A3%E7%90%86%E7%94%A8%E6%88%B7%E5%90%8D-%E5%AF%86%E7%A0%81%E7%9A%84-curl-%E5%91%BD%E4%BB%A4"><span class="toc-text">如何在 Linux&#x2F;Unix 上使用带有代理用户名&#x2F;密码的 curl 命令</span></a></li></ol></li></ol></div></div></widget>
+
+
+
+
+
+
+
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/2024/02/27/MacOS-Guide/"><span class="title">macOS配置/使用指南</span></a><a class="item title" href="/2024/02/21/OrbStack/"><span class="title">OrbStack使用指南</span></a><a class="item title" href="/2024/02/02/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"><span class="title">博客搭建笔记</span></a><a class="item title active" href="/2024/02/02/linux/"><span class="title">OS-Linux学习笔记</span><svg class="active-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M21 11.098v4.993c0 3.096 0 4.645-.734 5.321c-.35.323-.792.526-1.263.58c-.987.113-2.14-.907-4.445-2.946c-1.02-.901-1.529-1.352-2.118-1.47a2.225 2.225 0 0 0-.88 0c-.59.118-1.099.569-2.118 1.47c-2.305 2.039-3.458 3.059-4.445 2.945a2.238 2.238 0 0 1-1.263-.579C3 20.736 3 19.188 3 16.091v-4.994C3 6.81 3 4.666 4.318 3.333C5.636 2 7.758 2 12 2c4.243 0 6.364 0 7.682 1.332C21 4.665 21 6.81 21 11.098" opacity=".5"/><path fill="currentColor" d="M9 5.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5z"/></svg></a><a class="item title" href="/2024/01/26/windows/"><span class="title">OS-Windows学习笔记</span></a><a class="item title" href="/2024/01/26/%E9%A1%B9%E7%9B%AE%E4%B8%AD%E7%9A%84%E6%B8%97%E9%80%8F%E5%90%8E%E5%88%A9%E7%94%A8%E5%B0%8F%E7%BB%93/"><span class="title">项目中的渗透后利用小结</span></a><a class="item title" href="/2024/01/26/%E6%88%B4%E5%B0%94EMC%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%87%8D%E8%A3%85%E7%B3%BB%E7%BB%9F/"><span class="title">戴尔EMC服务器重装系统</span></a></div></widget>
+</div>
+<footer class="footer dis-select"><div class="social-wrap"><a class="social" href="https://github.com/FrenkyOHOHOH" target="_blank" rel="external nofollow noopener noreferrer"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/08a41b181ce68.svg"/></a><a class="social" href="/about/#comments" rel="noopener noreferrer"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/942ebbf1a4b91.svg"/></a></div></footer>
+</div></aside><div class="l_main" id="main">
+
+
+
+
+
+<div class="article banner top">
+  <div class="content">
+    
+<div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
+<span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a> <span class="sep"></span> <a class="cap breadcrumb-link" href="/categories/%E7%AC%94%E8%AE%B0/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></div>
+<div class="flex-row" id="post-meta"><span class="text created"><time datetime="2024-02-02T08:26:56.000Z">2024-02-02</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2024-02-02T08:26:56.000Z">2024-02-02</time></span></div></div>
+</div>
+
+    
+    <div class="bottom">
+      <div class="text-area">
+        <h1 class="text title"><span>OS-Linux学习笔记</span></h1>
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><p>文档大致情况：总结比赛和日常了解到的一些linux知识</p>
+<span id="more"></span>
+
+<h2 id="查看主机信息"><a href="#查看主机信息" class="headerlink" title="查看主机信息"></a>查看主机信息</h2><p>参考文章：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_31278903/article/details/83146031">https://blog.csdn.net/qq_31278903/article/details/83146031</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ifconfig</span><br><span class="line">uname －a   （Linux查看版本当前操作系统内核信息）</span><br><span class="line">cat /proc/version	（Linux查看当前操作系统版本信息）</span><br><span class="line">cat /etc/issue	或	cat /etc/redhat-release（Linux查看版本当前操作系统发行版信息）</span><br><span class="line">cat /proc/cpuinfo 	或 	lscpu （Linux查看cpu相关信息，包括型号、主频、内核信息等）</span><br><span class="line">getconf LONG_BIT  （Linux查看版本说明当前CPU运行在32bit模式下， 但不代表CPU不支持64bit）</span><br><span class="line">hostname （查看服务器名称）</span><br><span class="line">lsblk （查看磁盘信息 - 列出所有可用块设备的信息，而且还能显示他们之间的依赖关系，但是它不会列出RAM盘的信息）</span><br><span class="line">fdisk -l   （观察硬盘实体使用情况，也可对硬盘分区）</span><br><span class="line">df -k  （用于显示磁盘分区上的可使用的磁盘空间）</span><br><span class="line">echo $?		# 输出上条指令的执行状态，0代表执行成功，其他数字执行失败</span><br></pre></td></tr></table></figure>
+
+<h2 id="frp维护"><a href="#frp维护" class="headerlink" title="frp维护"></a>frp维护</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">netstat -anp |grep frp		#查看frp连接情况/进程号</span><br><span class="line">ps -e |grep frp						#查看frp进程</span><br><span class="line">lsof -i | grep frp				#查看frp连接情况/进程号（更直观）</span><br></pre></td></tr></table></figure>
+
+<p>客户端Frpc.ini</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[common]</span><br><span class="line">server_addr = 远端ip</span><br><span class="line">server_port = 11100</span><br><span class="line">token = QaXnB666!@#</span><br><span class="line"></span><br><span class="line">#[ssh]</span><br><span class="line">#type = tcp</span><br><span class="line">#local_ip = 127.0.0.1</span><br><span class="line">#local_port = 22</span><br><span class="line">#remote_port = 16001</span><br><span class="line"></span><br><span class="line">[socks5]</span><br><span class="line">type = tcp</span><br><span class="line">plugin = socks5</span><br><span class="line">remote_port = 17891</span><br></pre></td></tr></table></figure>
+
+<p>服务端Frps.ini</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[common]</span><br><span class="line">bind_port = 11000</span><br><span class="line">dashboard_port = 11500</span><br><span class="line">dashboard_user = fr3nky</span><br><span class="line">dashboard_pwd = Fr3Nky</span><br><span class="line"></span><br><span class="line">vhost_http_port = 9001</span><br><span class="line">max_pool_count = 50</span><br><span class="line"></span><br><span class="line">token = QaXnB666!@#</span><br><span class="line">tcp_mux = true</span><br><span class="line"></span><br><span class="line">log_file = /root/frp/log/frps.log</span><br><span class="line">log_level = info</span><br><span class="line">log_max_days = 3</span><br><span class="line"></span><br><span class="line">authentication_timeout = 0</span><br></pre></td></tr></table></figure>
+
+<p>运行脚本frp.sh</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#! /bin/bash</span><br><span class="line">sleep 30</span><br><span class="line">/home/fr3nky/frp/frpc -c /home/fr3nky/frp/frpc.ini &gt;&gt; /home/fr3nky/frp/log.txt &amp;</span><br></pre></td></tr></table></figure>
+
+<h2 id="vi和vim"><a href="#vi和vim" class="headerlink" title="vi和vim"></a>vi和vim</h2><p>yum&#x2F;apt install vim</p>
+<p>编辑模式 (insert mode)，按下“i, o, a, r”等任何一个字母后进入编辑模式，出现 –insert–</p>
+<p>命令行命令模式 (command-line mode)，输入“ : &#x2F; ? ”三个中的任何一个按钮，就可以将光标移动到最下面那一列</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">:wq! </span><br><span class="line">w: write</span><br><span class="line">q: quit</span><br><span class="line">!: 强制</span><br></pre></td></tr></table></figure>
+
+<h3 id="按键说明"><a href="#按键说明" class="headerlink" title="按键说明"></a>按键说明</h3><p>h 或 向左方向键(←)；j 或 向下方向键(↓)；j 或 向下方向键(↓)；l 或 向右方向键(→)</p>
+<p>向下移动 30 列， 可以使用 “30j” 或 “30↓” 的组合按键</p>
+<p>[Ctrl] + [f]：相当于 [Page Down]</p>
+<p>[Ctrl] + [b]：相当于 [Page Up] </p>
+<p>[Ctrl] + [d]：屏幕“向下”移动半页</p>
+<p>[Ctrl] + [u]：屏幕“向上”移动半页</p>
+<p>+：光标移动到非空白字符的下一列</p>
+<p>-：光标移动到非空白字符的上一列</p>
+<p>n&lt;space&gt;：那个 n 表示“数字”，例如 20 。按下数字后再 按空白键，光标会向右移动这一列的 n 个字 符。例如 20&lt;space&gt; 则光标会向后面移动 20 个字符距离。</p>
+<p>0 或功能键[Home]：这是数字“ 0 ”:移动到这一列的最前面字符处 (常用)</p>
+<p>$ 或功能键[End]：移动到这一列的最后面字符处(常用)</p>
+<p>H：光标移动到这个屏幕的最上方那一列的第一个字符</p>
+<p>M：光标移动到这个屏幕的中央那一列的第一个字符</p>
+<p>G：移动到这个文件的最后一列(常用)</p>
+<p>nG：n 为数字。移动到这个文件的第 n 列。例如 20G 则会移动到这个文件的第 20 列(可配合 :set nu)</p>
+<p>gg：移动到这个文件的第一列，相当于 1G(常用)</p>
+<h3 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h3><p>在 normal 模式下按下 <code>/</code> 即可进入查找模式，输入要查找的字符串并按下回车。 Vim 会跳转到第一个匹配。按下 <code>n</code> 查找下一个，按下 <code>N</code> 查找上一个。</p>
+<p>Vim 查找支持正则表达式，例如 <code>/vim$</code> 匹配行尾的 <code>&quot;vim&quot;</code>。 需要查找特殊字符需要转义，例如 <code>/vim\$</code> 匹配 <code>&quot;vim$&quot;</code>。</p>
+<blockquote>
+<p>注意查找回车应当用 <code>\n</code>，而替换为回车应当用 <code>\r</code>（相当于 <code>&lt;CR&gt;</code>）。</p>
+</blockquote>
+<p><strong>其他查找模式</strong></p>
+<ul>
+<li><code>?</code>（按住 Shift + <code>/</code>）往上查找。</li>
+<li><code>q/</code> 查看查找历史，选中一项后回车可以重新查找。</li>
+<li><code>q?</code> 查看向上查找历史。</li>
+</ul>
+<h2 id="SELinux安全"><a href="#SELinux安全" class="headerlink" title="SELinux安全"></a>SELinux安全</h2><p>参考 鸟哥的linux私房菜</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42741132/article/details/82533665">https://blog.csdn.net/weixin_42741132/article/details/82533665</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.51cto.com/u_13570193/2093299">https://blog.51cto.com/u_13570193/2093299</a></p>
+<p>Security Enhanced Linux</p>
+<p>SELinux 是通过 MAC【委任式存取控制 (Mandatory Access Control, MAC)】的方式来控管程序，他控制的主体是程序， 而目标则是该程序能否读取的“文件资源”。</p>
+<p>修改文件的SELinux标签的命令：<strong>chcon ；restorecon</strong></p>
+<p>有待补充</p>
+<h2 id="proc（进程的状态信息）"><a href="#proc（进程的状态信息）" class="headerlink" title="&#x2F;proc（进程的状态信息）"></a>&#x2F;proc（进程的状态信息）</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/juzihongle1/article/details/77184541">https://blog.csdn.net/juzihongle1/article/details/77184541</a></p>
+<p>&#x2F;proc&#x2F;self&#x2F;cwd	当前目录</p>
+<p>&#x2F;proc&#x2F;pid&#x2F;cwd	程序运行目录</p>
+<p>&#x2F;proc&#x2F;pid&#x2F;cmdline	程序运行指令</p>
+<p>&#x2F;proc&#x2F;net&#x2F;arp	读内网地址</p>
+<p>…</p>
+<h2 id="chattr-lsattr-文件隐藏属性"><a href="#chattr-lsattr-文件隐藏属性" class="headerlink" title="chattr&#x2F;lsattr 文件隐藏属性"></a>chattr&#x2F;lsattr 文件隐藏属性</h2><p><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-lsattr.html">https://www.runoob.com/linux/linux-comm-lsattr.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-chattr.html">https://www.runoob.com/linux/linux-comm-chattr.html</a></p>
+<p>除了基本r, w, x权限外，在Linux传统的Ext2&#x2F;Ext3&#x2F;Ext4文件系统下，我们还可以设置其他的系统隐藏属性，其他的文件系统可能就无法完整的支持这个指令了，例如 xfs 仅支持部份参数而已。这部份可使用 chattr 来设置，而以 lsattr 来查看。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost SELearning]# ll test.txt</span><br><span class="line">-rw-r--r--. 1 root root 12 2月  28 18:05 test.txt</span><br><span class="line">[root@localhost SELearning]# ls -l test.txt</span><br><span class="line">-rw-r--r--. 1 root root 12 2月  28 18:05 test.txt</span><br><span class="line">[root@localhost SELearning]# lsattr test.txt</span><br><span class="line">---------------- test.txt</span><br><span class="line">[root@localhost SELearning]# chattr +i test.txt</span><br><span class="line">[root@localhost SELearning]# rm -f test.txt</span><br><span class="line">rm: 无法删除&quot;test.txt&quot;: 不允许的操作</span><br><span class="line">[root@localhost SELearning]# lsattr test.txt</span><br><span class="line">----i----------- test.txt</span><br><span class="line">[root@localhost SELearning]# chattr -i test.txt</span><br><span class="line">[root@localhost SELearning]# rm test.txt</span><br><span class="line">rm：是否删除普通文件 &quot;test.txt&quot;？n</span><br><span class="line">[root@localhost SELearning]# ls</span><br><span class="line">test.txt  test.txt.bak</span><br><span class="line">[root@localhost SELearning]# lsattr test.txt</span><br><span class="line">---------------- test.txt</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="资源备份指令"><a href="#资源备份指令" class="headerlink" title="资源备份指令"></a>资源备份指令</h2><h3 id="打包"><a href="#打包" class="headerlink" title="打包"></a>打包</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -czvf src.tar.gz /var/www/html</span><br></pre></td></tr></table></figure>
+
+<h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -P port user@ip:/dirName fileName</span><br></pre></td></tr></table></figure>
+
+<h3 id="解包"><a href="#解包" class="headerlink" title="解包"></a>解包</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tar -xzvf src.tar.gz</span><br><span class="line">tar -xzvf src.tar.gz -C /home</span><br></pre></td></tr></table></figure>
+
+<h3 id="上传"><a href="#上传" class="headerlink" title="上传"></a>上传</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -P port fileName user@ip:/dirName</span><br></pre></td></tr></table></figure>
+
+<h2 id="端口转发"><a href="#端口转发" class="headerlink" title="端口转发"></a>端口转发</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">方法一(推荐):</span><br><span class="line">本地访问题目</span><br><span class="line">通过ssh进行端口转发</span><br><span class="line"></span><br><span class="line">命令：ssh -L 本地port:赛题IP:赛题port 操作机用户@操作机IP -p 操作机port</span><br><span class="line">实例：</span><br><span class="line">操作机资源为 202.10.10.123:45678 登录用户名dawd4321 密码00xx123</span><br><span class="line">赛题地址为：192.168.12.5:43215 本地空闲可使用端口为9999</span><br><span class="line">ssh -L 9999:192.168.12.5:43215 dawd4321@202.10.10.123 -p 45678 输入登录密码，登录成功</span><br><span class="line"></span><br><span class="line">10.0.100.230:47001</span><br><span class="line">47.106.187.217:40022</span><br><span class="line">dawd506941</span><br><span class="line">7a9557</span><br><span class="line">ssh -L 10001:10.0.100.230:47001 dawd506941@47.106.187.217 -p 40022</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">在本地nc/telnet  127.0.0.1 9999即可以本地调试pwn题</span><br><span class="line"></span><br><span class="line">如果转发的是web题目，可以直接使用浏览器访问9999端口。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">方法二:</span><br><span class="line">通过操作机做跳板进行 socks5 代理进行访问</span><br><span class="line">本地 PC 执行命令:</span><br><span class="line">ssh -CqTnN -D localhost:15567(随便一个非常用端口) &#123;操作机账号&#125;@&#123;操作机地址&#125; -p &#123;操作机端口&#125; 回车后输入 操作机密码</span><br><span class="line">浏览器(以 firefox 为例)设置-首选项-网络设置-手动配置 代理-socks主机 127.0.0.1 端口 15567(刚才在ssh命令 中指定的非常用端口)</span><br><span class="line">浏览器地址栏输入 web 题的 内网地址:端口 即可访问题目</span><br><span class="line">系统全局代理配置方法相似，配之后无需进行浏览器代理配</span><br><span class="line">置即可全局访问内网题目地址</span><br></pre></td></tr></table></figure>
+
+<h2 id="getshell危险指令绕过"><a href="#getshell危险指令绕过" class="headerlink" title="getshell危险指令绕过"></a>getshell危险指令绕过</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">echo cGluZyB3d3cuYmFpZHUuY29t|base64 -d|bash</span><br><span class="line">如果bash禁用了 可以用$0</span><br><span class="line">如果$0是-bash 可以用 $&#123;0:1&#125;</span><br><span class="line">cGluZyB3d3cuYmFpZHUuY29t等于ping www.baidu.com</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="添加用户-组，密码操作"><a href="#添加用户-组，密码操作" class="headerlink" title="添加用户&#x2F;组，密码操作"></a>添加用户&#x2F;组，密码操作</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">sudo adduser 用户名		#添加用户(有交互)</span><br><span class="line">sudo usermod -a -G sudo 用户名			#添加到sudo组，附带-a参数不改变用户基本组</span><br><span class="line">sudo gpasswd -a 用户名 docker			#参数-a附加到docker组，用户的基本组保持不变</span><br><span class="line">sudo usermod -G 用户名 用户名				#只保留用户基本组</span><br><span class="line">id 用户名			#查看用户组</span><br><span class="line">useradd test114 添加用户（无交互）</span><br><span class="line">userdel test114 删除用户</span><br><span class="line">passwd -d test114删除密码</span><br><span class="line">echo test114:114514 | chpasswd</span><br><span class="line">echo -e &quot;114514&quot; |passwd test114</span><br><span class="line"># 一句话添加用户密码</span><br><span class="line">	#普通账户</span><br><span class="line">useradd -p `openssl passwd -1 -salt &#x27;salt&#x27; 123456` guest</span><br><span class="line">useradd -p &quot;$(openssl passwd -1 123456)&quot; guest</span><br><span class="line">	#root账户，admin114514/Qaxnb@654!@#</span><br><span class="line">useradd -p `openssl passwd -1 -salt &#x27;ysxb114&#x27; Qaxnb@654\!@#` -u 10086 -g root -G root -s /bin/bash -d /home/.admin admin114514</span><br></pre></td></tr></table></figure>
+
+<h2 id="一句话找web目录"><a href="#一句话找web目录" class="headerlink" title="一句话找web目录"></a>一句话找web目录</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">find / -type f -name config.js|while read f;do sh -c &quot;id;pwd;hostname;/sbin/ifconfig&quot; &gt;$(dirname $f)/test3.txt;done</span><br><span class="line"></span><br><span class="line">echo ZmluZCAvIC10eXBlIGYgLW5hbWUgY29uZmlnLmpzfHdoaWxlIHJlYWQgZjtkbyBzaCAtYyAiaWQ7cHdkO2hvc3RuYW1lOy9zYmluL2lmY29uZmlnIiA+JChkaXJuYW1lICRmKS90ZXN0My50eHQ7ZG9uZQo= | base64 -d |sh</span><br></pre></td></tr></table></figure>
+
+<h2 id="curl"><a href="#curl" class="headerlink" title="curl"></a>curl</h2><h3 id="如何在-Linux-Unix-上使用带有代理用户名-密码的-curl-命令"><a href="#如何在-Linux-Unix-上使用带有代理用户名-密码的-curl-命令" class="headerlink" title="如何在 Linux&#x2F;Unix 上使用带有代理用户名&#x2F;密码的 curl 命令"></a>如何在 Linux&#x2F;Unix 上使用带有代理用户名&#x2F;密码的 curl 命令</h3><p>要将 <code>curl</code>命令与需要用户名和密码的代理服务器一起使用，您可以使用 <code>-x</code>选项指定代理服务器，并使用 <code>-U</code>选项指定用户名和密码。</p>
+<p>例如，要使用位于 proxy.example.com 的代理服务器以用户名 user 和密码 password 向 <a target="_blank" rel="noopener" href="https://www.example.com/">https://www.example.com</a> 发送请求，您可以使用以下命令:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -x proxy.example.com -U user:password https://www.example.com</span><br></pre></td></tr></table></figure>
+
+<p>这将使用位于 proxy.example.com 的代理服务器向 <a target="_blank" rel="noopener" href="https://www.example.com/">https://www.example.com</a> 发送请求，并在请求中包含用户名和密码。</p>
+<p>如果要在 <code>http_proxy</code>环境变量中指定代理服务器和用户名&#x2F;密码，可以使用 <code>--proxy-user</code>选项指定用户名和密码。</p>
+<p>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export http_proxy=proxy.example.com</span><br><span class="line">curl --proxy-user user:password https://www.example.com</span><br></pre></td></tr></table></figure>
+
+<p>这会将“http_proxy”环境变量设置为“proxy.example.com”，并在请求中包含用户名和密码。</p>
+<p>请记住，<code>-x</code>和 <code>--proxy-user</code>选项与用于跟随重定向的 <code>-L</code>选项不兼容。如果您需要遵循重定向，则可以改用“–location-trusted”选项。</p>
+
+<div class="article-footer fs14">
+    <section id="license">
+      <div class="header"><span>许可协议</span></div>
+      <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div>
+    </section>
+    </div>
+</article>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">较新文章</div><a href="/2024/02/02/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建笔记</a></div><div class="item" id="next"><div class="note">较早文章</div><a href="/2024/01/26/windows/">OS-Windows学习笔记</a></div></section></div>
+
+
+
+
+
+
+<footer class="page-footer footnote"><hr><div class="sitemap"><div class="sitemap-group"><span class="fs15">博客</span><a href="/">近期</a><a href="/">分类</a><a href="/">标签</a><a href="/">归档</a></div><div class="sitemap-group"><span class="fs15">项目</span><a href="/">开源库</a></div><div class="sitemap-group"><span class="fs15">社交</span><a href="/">友链</a><a href="/">留言板</a></div><div class="sitemap-group"><span class="fs15">更多</span><a href="/about/">关于本站</a><a target="_blank" rel="noopener" href="https://github.com/FrenkyOHOHOH">GitHub</a></div></div><div class="text"><p>本站由 <a href="/">Fr3Nky</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.26.4">Stellar 1.26.4</a> 主题创建。<br>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+</div></footer>
+<div class='float-panel mobile-only blur' style='display:none'>
+  <button type='button' class='sidebar-toggle mobile' onclick='sidebar.toggle()'>
+    <svg t="1705412886951" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="8331" width="200" height="200"><path d="M638.72 970.666667h-256c-118.186667 0-198.272-25.002667-251.946667-78.72S52.053333 758.186667 52.053333 640V384c0-118.186667 25.002667-198.272 78.72-251.946667S264.533333 53.333333 382.72 53.333333h256c118.186667 0 198.272 25.002667 251.946667 78.72S969.386667 265.813333 969.386667 384v256c0 118.186667-25.002667 198.272-78.72 251.946667S756.906667 970.666667 638.72 970.666667z m-256-853.333334c-100.096 0-165.802667 19.2-206.72 59.946667S116.053333 283.904 116.053333 384v256c0 100.096 19.072 165.802667 59.946667 206.72S282.624 906.666667 382.72 906.666667h256c100.096 0 165.802667-19.072 206.72-59.946667S905.386667 740.096 905.386667 640V384c0-100.096-19.072-165.802667-59.946667-206.72S738.816 117.333333 638.72 117.333333z" p-id="8332"></path><path d="M638.72 970.666667a32 32 0 0 1-32-32V85.333333a32 32 0 0 1 32-32 32 32 0 0 1 32 32v853.333334a32 32 0 0 1-32 32zM340.053333 653.226667a31.914667 31.914667 0 0 1-22.613333-9.386667 32 32 0 0 1 0-45.269333L404.053333 512 317.44 425.386667a32 32 0 0 1 0-45.226667 32 32 0 0 1 45.226667 0l109.226666 109.226667a32 32 0 0 1 0 45.269333L362.666667 643.84a31.914667 31.914667 0 0 1-22.613334 9.386667z" p-id="8333"></path></svg>
+  </button>
+</div>
+<div class="main-mask" onclick="sidebar.toggle()"></div></div></div><div class="scripts">
+<script type="text/javascript">
+  const stellar = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    loadCSS: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    // 从 butterfly 和 volantis 获得灵感
+    loadScript: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = stellar.config.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    // https://github.com/jerryc127/hexo-theme-butterfly
+    jQuery: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        stellar.loadScript(stellar.plugins.jQuery).then(fn)
+      } else {
+        fn()
+      }
+    }
+  };
+  stellar.version = '1.26.3';
+  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.26.3';
+  stellar.config = {
+    date_suffix: {
+      just: '刚刚',
+      min: '分钟前',
+      hour: '小时前',
+      day: '天前',
+      month: '个月前',
+    },
+    root : '/',
+  };
+
+  // required plugins (only load if needs)
+  stellar.plugins = {
+    jQuery: 'https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js'
+  };
+
+  if ('local_search') {
+    stellar.search = {};
+    stellar.search.service = 'local_search';
+    if (stellar.search.service == 'local_search') {
+      let service_obj = Object.assign({}, {"field":"all","path":"/search.json","content":true,"sort":"-date"});
+      stellar.search[stellar.search.service] = service_obj;
+    }
+  }
+
+  // stellar js
+  stellar.plugins.stellar = Object.assign({"sites":"/js/plugins/sites.js","friends":"/js/plugins/friends.js","ghinfo":"/js/plugins/ghinfo.js","timeline":"/js/plugins/timeline.js","linkcard":"/js/plugins/linkcard.js","fcircle":"/js/plugins/fcircle.js","weibo":"/js/plugins/weibo.js","memos":"/js/plugins/memos.js","marked":"/js/plugins/marked.js"});
+
+  stellar.plugins.marked = Object.assign("https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js");
+  // optional plugins
+  if ('true' == 'true') {
+    stellar.plugins.lazyload = Object.assign({"enable":true,"js":"https://cdn.bootcdn.net/ajax/libs/vanilla-lazyload/17.8.4/lazyload.min.js","transition":"fade"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.swiper = Object.assign({"enable":true,"css":"https://unpkg.com/swiper@10.3/swiper-bundle.min.css","js":"https://unpkg.com/swiper@10.3/swiper-bundle.min.js"});
+  }
+  if ('' == 'true') {
+    stellar.plugins.scrollreveal = Object.assign({"enable":null,"js":"https://cdn.bootcdn.net/ajax/libs/scrollReveal.js/4.0.9/scrollreveal.min.js","distance":"16px","duration":800,"interval":100,"scale":1});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.preload = Object.assign({"enable":true,"service":"flying_pages","flying_pages":"https://cdn.bootcdn.net/ajax/libs/flying-pages/2.1.2/flying-pages.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.fancybox = Object.assign({"enable":true,"js":"https://cdn.bootcdn.net/ajax/libs/fancyapps-ui/5.0.22/fancybox/fancybox.umd.min.js","css":"https://cdn.bootcdn.net/ajax/libs/fancyapps-ui/5.0.22/fancybox/fancybox.min.css","selector":null});
+  }
+  if ('false' == 'true') {
+    stellar.plugins.heti = Object.assign({"enable":false,"css":"https://unpkg.com/heti@0.9.2/umd/heti.min.css","js":"https://unpkg.com/heti@0.9.2/umd/heti-addon.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.copycode = Object.assign({"enable":true,"js":"/js/plugins/copycode.js","default_text":"Copy","success_text":"Copied","toast":"复制成功"});
+  }
+</script>
+
+<!-- required -->
+<script src="/js/main.js?v=1.26.4" async></script>
+
+<!-- optional -->
+
+
+
+
+
+
+<!-- inject -->
+
+</div></body></html>
